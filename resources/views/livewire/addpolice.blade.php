@@ -1,0 +1,130 @@
+<div>
+<div class="flex">
+ 
+  <div class="w-[350px] px-3">
+<form wire:submit.prevent="store" method="post" enctype="multipart/form-data">
+      
+  <div class="flex flex-wrap -mx-3 mb-3">
+    <div class="w-full px-3">
+      <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-password">
+        Nama Petugas :
+      </label>
+      <input wire:model="police_name" class="appearance-none block w-full bg-gray-200 text-black border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="grid-password" type="text" name="police_name" placeholder="Masukan Nama Petugas">
+      @error('police_name')
+      <p class="text-red-500 text-xs italic">Silakan isi Nama Petugas.</p>
+      @enderror
+    </div>
+  </div>
+  
+  <div class="flex flex-wrap -mx-3 mb-3">
+    <div class="w-full px-3">
+      <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-password">
+        Email :
+      </label>
+      <input wire:model="email" class="appearance-none block w-full bg-gray-200 text-black border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="grid-password" type="email" placeholder="Masukan Email">
+      @error('email')
+      <p class="text-red-500 text-xs italic">{{ $message }}</p>
+      @enderror
+    </div>
+  </div>
+  </div>
+
+  <div class="w-[350px] px-3">
+  <div class="flex flex-wrap -mx-3 mb-3">
+    <div class="w-full px-3">
+      <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-password">
+        Foto Petugas :
+      </label>
+      <input wire:model="photo" class="appearance-none block w-full bg-gray-200 text-black border border-gray-200 rounded py-2 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="grid-password" type="file" name="photo" placeholder="Pilih Foto">
+      @error('photo')
+      <p class="text-red-500 text-xs italic">Silakan Pilih Foto Petugas.</p>
+      @enderror
+    </div>
+  </div>
+
+   <div class="flex flex-wrap -mx-3 mb-3">
+    <div class="w-full px-3">
+      <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-password">
+        Password :
+      </label>
+      <input wire:model="password" class="appearance-none block w-full bg-gray-200 text-black border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="grid-password" type="password" placeholder="Isikan Password Anda">
+      @error('password')
+      <p class="text-red-500 text-xs italic">Silakan isi Password anda.</p>
+      @enderror
+    </div>
+  </div>
+
+  </div>
+
+  <div class="w-[350px] px-3">
+
+    <div class="flex flex-wrap">
+    <label for="countries" class="block mb-1 text-sm font-medium text-gray-900 dark:text-white">Pilih Polsek :</label>
+    <select wire:model="id_sector" id="countries" class=" border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-3 bg-gray-200">
+    <option selected>Pilih</option>
+      @foreach ($sectors as $sector)
+    <option value="{{$sector->id}}" >{{ $sector->sector_name }}</option>
+    @endforeach
+    </select>
+    @error('id_sector')
+    <p class="text-red-500 text-xs italic">Silakan Pilih Polsek.</p>
+    @enderror
+  </div>  
+
+      <div class="flex flex-wrap -mx-3 mb-3">
+    <div class="w-full px-3">
+      <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2 pt-3" for="grid-password">
+        Verifikasi Password :
+      </label>
+      <input wire:model="verification_password" class="appearance-none block w-full bg-gray-200 text-black border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="grid-password" name="verification_password" type="password" placeholder="Isikan Password Anda">
+      @error('verification_password')
+      <p class="text-red-500 text-xs italic">Silakan isi Password anda.</p>
+      @enderror
+    </div>
+  </div>
+
+
+  </div>
+
+  <div>
+     <div class="text-start py-6">
+        <button type="submit" class="text-white bg-gradient-to-r from-cyan-400 via-cyan-500 to-cyan-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-cyan-300 dark:focus:ring-cyan-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2">Tambah</button>
+      
+      </div>
+
+
+  
+</form>
+    
+  </div>
+
+</div>
+<div>
+      @if (session()->has('message-success'))
+ 
+        <div x-data ="{ open: true }"
+             x-init ="setTimeout(() => {open = false}, 3000)"
+             x-show.transition.duration.1000ms = "open"
+         class="flex justify-center items-center font-medium py-1 px-2 rounded-md text-green-700 bg-green-100 border border-green-300 ">
+            <div slot="avatar">
+                <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-check-circle w-5 h-5 mx-2">
+                    <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                    <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                </svg>
+            </div>
+            <div class="text-xl font-normal  max-w-full flex-initial">
+                {{ session('message-success') }}</div>
+            <div class="flex flex-auto flex-row-reverse">
+                <div>
+                    {{-- <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-x cursor-pointer hover:text-green-400 rounded-full w-5 h-5 ml-2">
+                        <line x1="18" y1="6" x2="6" y2="18"></line>
+                        <line x1="6" y1="6" x2="18" y2="18"></line>
+                    </svg> --}}
+                </div>
+            </div>
+        </div>
+   @endif
+</div>
+</div>
+
+
