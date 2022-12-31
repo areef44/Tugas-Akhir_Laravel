@@ -8,7 +8,7 @@
     
     <div class="w-full h-screen bg-blue-500 mr-10">
 
-        <h1 class="py-8 px-5 text-3xl font-bold text-slate-900 ">Selamat Datang di Halaman Dashboard Petugas</h1>
+        <h1 class="py-8 px-5 text-3xl font-bold text-slate-900 ">Selamat Datang di Halaman Petugas, {{ $polices->police_name}}</h1>
         
     </div>
 

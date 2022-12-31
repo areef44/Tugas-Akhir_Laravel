@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AuthController;
 use App\Http\Livewire\Aboutus;
 use App\Http\Livewire\Addcategory;
 use App\Http\Livewire\Addmember;
@@ -14,6 +15,7 @@ use App\Http\Livewire\Editsector;
 use Illuminate\Support\Facades\Route;
 use App\Http\Livewire\Home;
 use App\Http\Livewire\Login;
+use App\Http\Livewire\LoginPolice;
 use App\Http\Livewire\Makereport;
 use App\Http\Livewire\Member;
 use App\Http\Livewire\Officermanage;
@@ -49,21 +51,23 @@ Route::get('/aboutus', Aboutus::class)->name('aboutus');
 
 Route::get('/login', Login::class)->name('login');
 
-
-Route::get('/member', Member::class)->name('member');
-
-Route::get('/addreport', Addreport::class)->name('addreport');
-
-Route::get('/report', Report::class)->name('report');
-
-Route::get('/makereport', Makereport::class)->name('makereport');
+Route::get('/login-police', LoginPolice::class)->name('login-police');
 
 
-Route::get('/police', Police::class)->name('police');
+Route::get('/member', Member::class)->name('member')->middleware(['withAuth']);
 
-Route::get('/unprocessed', Unprocessed::class)->name('unprocessed');
+Route::get('/addreport', Addreport::class)->name('addreport')->middleware(['withAuth']);
 
-Route::get('/processed', Processed::class)->name('processed');
+Route::get('/report', Report::class)->name('report')->middleware(['withAuth']);
+
+Route::get('/makereport', Makereport::class)->name('makereport')->middleware(['withAuth']);
+
+
+Route::get('/police', Police::class)->name('police')->middleware(['policeAuth']);
+
+Route::get('/unprocessed', Unprocessed::class)->name('unprocessed')->middleware(['policeAuth']);
+
+Route::get('/processed', Processed::class)->name('processed')->middleware(['policeAuth']);
 
 
 Route::get('/admin', Admin::class)->name('admin');
@@ -85,3 +89,17 @@ Route::get('/editcategory', Editcategory::class)->name('editcategory');
 Route::get('/addpolice', Addpolice::class)->name('addpolice');
 
 Route::get('/editpolice', Editpolice::class)->name('editpolice');
+
+
+
+// Route::any("/login", [AuthController::class, "login"])
+//     ->name('login')
+//     ->middleware(["noAuth"]);
+
+Route::any("/logout", [AuthController::class, "logout"])
+    ->name('logout')
+    ->middleware(["withAuth"]);
+
+Route::any("/logoutpolice", [AuthController::class, "logoutPolice"])
+    ->name('logoutpolice')
+    ->middleware(["withAuth"]);

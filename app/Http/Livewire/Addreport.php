@@ -3,6 +3,7 @@
 namespace App\Http\Livewire;
 
 use App\Models\Category;
+use App\Models\Member;
 use App\Models\Police;
 use App\Models\Report;
 use App\Models\Sector;
@@ -24,6 +25,8 @@ class Addreport extends Component
     public $story;
     public $picture;
     public $id_police;
+    public $id_user;
+    public $isValidated = 0;
 
 
     public function render()
@@ -32,17 +35,43 @@ class Addreport extends Component
 
         $polices = Police::query()->get();
 
+
+        $userId = session()->get('idPengguna');
+        $members = Member::query()
+            ->where('role_id', 1)
+            ->where('id', $userId)
+            ->first();
+
+        $this->id_user = $members->id;
+
         $sectors = Sector::query()->get();
 
         return view('livewire.addreport', [
             'categories' => $categories,
             'polices' => $polices,
-            'sectors' => $sectors
+            'sectors' => $sectors,
+            'members' => $members
         ]);
     }
 
     public function store()
     {
+
+        // dd(
+        //     $this->item,
+        //     $this->id_category,
+        //     $this->id_user,
+        //     $this->identity,
+        //     $this->quantity,
+        //     $this->value,
+        //     $this->report_date,
+        //     $this->loss_date,
+        //     $this->lost_location,
+        //     $this->story,
+        //     $this->picture,
+        //     $this->id_police,
+        //     $this->isValidated
+        // );
         $this->validate(
             [
                 'item' => 'required|min:3',
@@ -52,6 +81,7 @@ class Addreport extends Component
                 'loss_date' => 'required',
                 'lost_location'    => 'required',
                 'picture' => 'max:1024'
+
             ],
             [
                 'required' => ":attribute tidak boleh kosong",
@@ -69,14 +99,7 @@ class Addreport extends Component
             $path = null;
         }
 
-
-
-
-
         // $path = $this->photo->store('photos', 'public');
-
-
-
 
         $reports = Report::create([
             'item' => $this->item,
@@ -89,7 +112,10 @@ class Addreport extends Component
             'lost_location' => $this->lost_location,
             'story' => $this->story,
             'id_police' => $this->id_police,
-            'picture' => $path
+            'id_user' => $this->id_user,
+            'picture' => $path,
+            'isValidated' => $this->isValidated
+
         ]);
 
         $this->resetInput();

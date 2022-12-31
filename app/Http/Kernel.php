@@ -2,6 +2,10 @@
 
 namespace App\Http;
 
+use App\Http\Controllers\NoAuth;
+use App\Http\Middleware\membersAuth;
+use App\Http\Middleware\PoliceAuth;
+use App\Http\Middleware\WithAuth;
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
 
 class Kernel extends HttpKernel
@@ -63,5 +67,9 @@ class Kernel extends HttpKernel
         'signed' => \App\Http\Middleware\ValidateSignature::class,
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
+        'withAuth' => WithAuth::class,
+        'noAuth' => NoAuth::class,
+        'membersAuth' => membersAuth::class,
+        'policeAuth' => PoliceAuth::class
     ];
 }

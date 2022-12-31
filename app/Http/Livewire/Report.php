@@ -29,9 +29,14 @@ class Report extends Component
 
     public function render()
     {
+
+        $userId = session()->get('idPengguna');
         $categories = Category::query()->get();
         $polices = Police::query()->get();
-        $reports = ModelsReport::query()->get();
+        $reports = ModelsReport::query()
+            ->where('id_user', $userId)
+            ->where('isValidated', 0)
+            ->get();
         $sectors = Sector::query()->get();
         // $data = DB::select("SELECT polices.id as id_police, polices.*, sectors.* FROM polices, sectors WHERE sectors.id = polices.id_sector ");
 

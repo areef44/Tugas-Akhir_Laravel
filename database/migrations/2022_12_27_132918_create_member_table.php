@@ -23,6 +23,7 @@ return new class extends Migration
             $table->string('phone', 15);
             $table->string('email')->unique();
             $table->text('password');
+            $table->tinyInteger("role_id")->default(1);
             $table->timestamps();
         });
     }

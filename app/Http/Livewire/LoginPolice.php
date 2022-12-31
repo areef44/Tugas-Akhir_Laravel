@@ -2,21 +2,19 @@
 
 namespace App\Http\Livewire;
 
-use App\Models\Member;
+use App\Models\Police;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Livewire\Component;
 
-class Login extends Component
+class LoginPolice extends Component
 {
     public $email;
     public $password;
 
-
     public function render()
     {
-        return view('livewire.login');
+        return view('livewire.login-police');
     }
 
     function login(Request $request)
@@ -32,10 +30,10 @@ class Login extends Component
         );
 
         if ($request->method() == "GET") {
-            return view('livewire.member');
+            return view('livewire.police');
         }
 
-        $pengguna = Member::query()
+        $pengguna = Police::query()
             ->where("email", $this->email)
             ->first();
         if ($pengguna == null) {
@@ -53,12 +51,12 @@ class Login extends Component
         if (!session()->isStarted()) session()->start();
         session()->put("logged", true);
         session()->put("idPengguna", $pengguna->id);
-        return redirect()->route("member");
+        return redirect()->route("police");
     }
 
     function logout(Request $request)
     {
         session()->flush();
-        return redirect()->route("login");
+        return redirect()->route("login-police");
     }
 }

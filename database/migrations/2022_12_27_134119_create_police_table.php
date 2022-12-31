@@ -20,6 +20,7 @@ return new class extends Migration
             $table->integer('id_sector');
             $table->string('email')->unique();
             $table->text('password');
+            $table->tinyInteger("role_id")->default(2);
             $table->timestamps();
         });
     }

@@ -1,6 +1,5 @@
 <div>
-  @livewire('navbar')
-<div class="w-1/3 mx-auto mt-32 border-2 px-4 py-4 rounded bg-slate-300">
+    <div class="w-1/3 mx-auto mt-32 border-2 px-4 py-4 rounded bg-slate-300">
 
   @if (session()->has('message-success'))
  
@@ -48,4 +47,3 @@
 
 </div>
 </div>
-
