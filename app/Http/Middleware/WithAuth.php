@@ -17,6 +17,9 @@ class WithAuth
     public function handle(Request $request, Closure $next)
     {
         if (!session()->isStarted()) session()->start();
+        if (session()->get('role_id') != 1) {
+            return redirect()->back();
+        }
         // dd(session()->get("logged"));
         if (!session()->get("logged", false)) {
             return redirect()

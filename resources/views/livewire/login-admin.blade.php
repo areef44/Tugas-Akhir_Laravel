@@ -26,7 +26,7 @@
         </div>
    @endif
    
-<h1 class="text-3xl py-4">Form Login Petugas</h1>
+<h1 class="text-3xl py-4">Form Login Admin</h1>
 
 <form wire:submit.prevent="login">
   <div class="mb-6">
@@ -47,3 +47,4 @@
 
 </div>
 </div>
+

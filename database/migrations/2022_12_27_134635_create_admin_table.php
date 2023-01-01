@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('admin_name', 50);
             $table->string('email')->unique();
             $table->text('password');
+            $table->tinyInteger("role_id")->default(3);
             $table->timestamps();
         });
     }

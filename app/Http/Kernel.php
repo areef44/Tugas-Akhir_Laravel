@@ -3,6 +3,7 @@
 namespace App\Http;
 
 use App\Http\Controllers\NoAuth;
+use App\Http\Middleware\AdminAuth;
 use App\Http\Middleware\membersAuth;
 use App\Http\Middleware\PoliceAuth;
 use App\Http\Middleware\WithAuth;
@@ -70,6 +71,7 @@ class Kernel extends HttpKernel
         'withAuth' => WithAuth::class,
         'noAuth' => NoAuth::class,
         'membersAuth' => membersAuth::class,
-        'policeAuth' => PoliceAuth::class
+        'policeAuth' => PoliceAuth::class,
+        'adminAuth' => AdminAuth::class
     ];
 }

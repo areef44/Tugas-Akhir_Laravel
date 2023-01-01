@@ -5,7 +5,7 @@ namespace App\Http\Middleware;
 use Closure;
 use Illuminate\Http\Request;
 
-class PoliceAuth
+class AdminAuth
 {
     /**
      * Handle an incoming request.
@@ -17,13 +17,13 @@ class PoliceAuth
     public function handle(Request $request, Closure $next)
     {
         if (!session()->isStarted()) session()->start();
-        if (session()->get('role_id') != 2) {
+        if (session()->get('role_id') != 3) {
             return redirect()->back();
         }
         // dd(session()->get("logged"));
         if (!session()->get("logged", false)) {
             return redirect()
-                ->route("login-police")
+                ->route("login-admin")
                 ->withErrors([
                     "msg" => "Harap Login Terlebih Dahulu"
                 ]);

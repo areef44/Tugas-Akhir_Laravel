@@ -39,19 +39,22 @@ class Login extends Component
             ->where("email", $this->email)
             ->first();
         if ($pengguna == null) {
-            $this->reset();
-            session()->flash('message-success', 'Email Tidak Ditemukan');
+            session()->flash('message-success', 'Email Salah');
+            return redirect()->route('login');
         }
+
 
         // dd(Hash::make($password), $pengguna, Hash::check($password, $pengguna->password));
 
         if (!Hash::check($this->password, $pengguna->password)) {
-            $this->reset();
             session()->flash('message-success', 'Password Salah');
+            return redirect()->route('login');
         }
+
 
         if (!session()->isStarted()) session()->start();
         session()->put("logged", true);
+        session()->put("role_id", 1);
         session()->put("idPengguna", $pengguna->id);
         return redirect()->route("member");
     }

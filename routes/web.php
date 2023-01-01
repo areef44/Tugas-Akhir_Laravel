@@ -15,6 +15,7 @@ use App\Http\Livewire\Editsector;
 use Illuminate\Support\Facades\Route;
 use App\Http\Livewire\Home;
 use App\Http\Livewire\Login;
+use App\Http\Livewire\LoginAdmin;
 use App\Http\Livewire\LoginPolice;
 use App\Http\Livewire\Makereport;
 use App\Http\Livewire\Member;
@@ -25,6 +26,7 @@ use App\Http\Livewire\Register;
 use App\Http\Livewire\Report;
 use App\Http\Livewire\Sector;
 use App\Http\Livewire\Unprocessed;
+use App\Models\Admin as ModelsAdmin;
 
 /*
 |--------------------------------------------------------------------------
@@ -70,25 +72,27 @@ Route::get('/unprocessed', Unprocessed::class)->name('unprocessed')->middleware(
 Route::get('/processed', Processed::class)->name('processed')->middleware(['policeAuth']);
 
 
-Route::get('/admin', Admin::class)->name('admin');
+Route::get('/login-admin', LoginAdmin::class)->name('login-admin');
 
-Route::get('/officermanage', Officermanage::class)->name('officermanage');
+Route::get('/admin', Admin::class)->name('admin')->middleware(['adminAuth']);
 
-Route::get('/sector', Sector::class)->name('sector');
+Route::get('/officermanage', Officermanage::class)->name('officermanage')->middleware(['adminAuth']);
 
-Route::get('/category', Category::class)->name('category');
+Route::get('/sector', Sector::class)->name('sector')->middleware(['adminAuth']);
 
-Route::get('/addsector', Addsector::class)->name('addsector');
+Route::get('/category', Category::class)->name('category')->middleware(['adminAuth']);
 
-Route::get('/editsector', Editsector::class)->name('editsector');
+Route::get('/addsector', Addsector::class)->name('addsector')->middleware(['adminAuth']);
 
-Route::get('/addcategory', Addcategory::class)->name('addcategory');
+Route::get('/editsector', Editsector::class)->name('editsector')->middleware(['adminAuth']);
 
-Route::get('/editcategory', Editcategory::class)->name('editcategory');
+Route::get('/addcategory', Addcategory::class)->name('addcategory')->middleware(['adminAuth']);
 
-Route::get('/addpolice', Addpolice::class)->name('addpolice');
+Route::get('/editcategory', Editcategory::class)->name('editcategory')->middleware(['adminAuth']);
 
-Route::get('/editpolice', Editpolice::class)->name('editpolice');
+Route::get('/addpolice', Addpolice::class)->name('addpolice')->middleware(['adminAuth']);
+
+Route::get('/editpolice', Editpolice::class)->name('editpolice')->middleware(['adminAuth']);
 
 
 
@@ -97,9 +101,12 @@ Route::get('/editpolice', Editpolice::class)->name('editpolice');
 //     ->middleware(["noAuth"]);
 
 Route::any("/logout", [AuthController::class, "logout"])
-    ->name('logout')
-    ->middleware(["withAuth"]);
+    ->name('logout');
+
 
 Route::any("/logoutpolice", [AuthController::class, "logoutPolice"])
-    ->name('logoutpolice')
-    ->middleware(["withAuth"]);
+    ->name('logoutpolice');
+
+
+Route::any("/logoutadmin", [AuthController::class, "logoutAdmin"])
+    ->name('logoutadmin');

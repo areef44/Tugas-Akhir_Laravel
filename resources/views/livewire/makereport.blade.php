@@ -39,7 +39,7 @@
                                     <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-500">
                                         <div class="text-center text-sm leading-5 text-blue-900">{{$report->item}}</div>
                                     </td>
-                                    <td class="text-center px-6 py-4 whitespace-no-wrap border-b text-blue-900 border-gray-500 text-sm leading-5">{{ $report->id_user }}</td>
+                                    <td class="text-center px-6 py-4 whitespace-no-wrap border-b text-blue-900 border-gray-500 text-sm leading-5">{{ $report->members->name }}</td>
                                     <td class="text-center px-6 py-4 whitespace-no-wrap border-b text-blue-900 border-gray-500 text-sm leading-5">{{ $report->report_date }}</td>
                                     <td class="text-center px-6 py-4 whitespace-no-wrap border-b text-blue-900 border-gray-500 text-sm leading-5">{{ $report->loss_date }}</td>
                                     <td class="text-center px-6 py-4 whitespace-no-wrap border-b border-gray-500 text-blue-900 text-sm leading-5">{{ $report->lost_location }}</td>

@@ -44,7 +44,7 @@ class Register extends Component
             ]
         );
 
-        $hashedPassword = Hash::make($this->password);
+        // $hashedPassword = Hash::make($this->password);
 
         $members = Member::create([
             'nik' => $this->nik,
@@ -54,7 +54,7 @@ class Register extends Component
             'address' => $this->address,
             'phone' => $this->phone,
             'email' => $this->email,
-            'password' => $hashedPassword
+            'password' => $this->password
         ]);
 
         $this->resetInput();

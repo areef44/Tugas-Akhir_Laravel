@@ -52,13 +52,13 @@ class Addpolice extends Component
 
         // $url = asset('storage/' . $path);
 
-        $hashedPassword = Hash::make($this->password);
+        // $hashedPassword = Hash::make($this->password);
 
         $polices = Police::create([
             'police_name' => $this->police_name,
             'id_sector' => $this->id_sector,
             'email' => $this->email,
-            'password' => $hashedPassword,
+            'password' => $this->password,
             'photo' => $path
         ]);
 

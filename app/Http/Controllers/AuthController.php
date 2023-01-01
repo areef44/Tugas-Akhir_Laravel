@@ -8,46 +8,46 @@ use Illuminate\Support\Facades\Hash;
 
 class AuthController extends Controller
 {
-    function login(Request $request)
-    {
-        if ($request->method() == "GET") {
-            return view('login');
-        }
+    // function login(Request $request)
+    // {
+    //     if ($request->method() == "GET") {
+    //         return view('login');
+    //     }
 
-        $email = $request->input("email");
-        $password = $request->input("password");
+    //     $email = $request->input("email");
+    //     $password = $request->input("password");
 
-        $members = Member::query()
-            ->where("email", $email)
-            ->first();
-        // dd($users);
-        if ($members == null) {
-            return redirect()
-                ->back()
-                ->withErrors([
-                    "msg" => "Email tidak ditemukan"
-                ]);
-        }
-        // dd(Hash::make($password), $pengguna, Hash::check('fulan123', $pengguna->password));
+    //     $members = Member::query()
+    //         ->where("email", $email)
+    //         ->first();
+    //     // dd($users);
+    //     if ($members == null) {
+    //         return redirect()
+    //             ->back()
+    //             ->withErrors([
+    //                 "msg" => "Email tidak ditemukan"
+    //             ]);
+    //     }
+    //     // dd(Hash::make($password), $pengguna, Hash::check('fulan123', $pengguna->password));
 
-        if (!Hash::check($password, $members->password)) {
-            return redirect()
-                ->back()
-                ->withErrors([
-                    "msg" => "password salah!"
-                ]);
-        }
+    //     if (!Hash::check($password, $members->password)) {
+    //         return redirect()
+    //             ->back()
+    //             ->withErrors([
+    //                 "msg" => "password salah!"
+    //             ]);
+    //     }
 
 
-        if (!session()->isStarted()) session()->start();
-        session()->put("id_user", $members->id);
-        session()->put("role_id", $members->role_id);
+    //     if (!session()->isStarted()) session()->start();
+    //     session()->put("id_user", $members->id);
+    //     session()->put("role_id", $members->role_id);
 
-        if ($members->role_id == 1) {
-            session()->put("logged-user", true);
-            return redirect()->route("member");
-        }
-    }
+    //     if ($members->role_id == 1) {
+    //         session()->put("logged-user", true);
+    //         return redirect()->route("member");
+    //     }
+    // }
 
     function logout(Request $request)
     {
@@ -66,5 +66,11 @@ class AuthController extends Controller
     {
         session()->flush();
         return redirect()->route("login-police");
+    }
+
+    function logoutAdmin(Request $request)
+    {
+        session()->flush();
+        return redirect()->route("login-admin");
     }
 }
