@@ -3,12 +3,12 @@
 use App\Http\Controllers\AuthController;
 use App\Http\Livewire\Aboutus;
 use App\Http\Livewire\Addcategory;
-use App\Http\Livewire\Addmember;
 use App\Http\Livewire\Addpolice;
 use App\Http\Livewire\Addreport;
 use App\Http\Livewire\Addsector;
 use App\Http\Livewire\Admin;
 use App\Http\Livewire\Category;
+use App\Http\Livewire\Cetakpdf;
 use App\Http\Livewire\Editcategory;
 use App\Http\Livewire\Editpolice;
 use App\Http\Livewire\Editsector;
@@ -47,8 +47,6 @@ Route::get('/home', Home::class)->name('home');
 
 Route::get('/register', Register::class)->name('register');
 
-Route::get('/addmember', Addmember::class)->name('addmember');
-
 Route::get('/aboutus', Aboutus::class)->name('aboutus');
 
 Route::get('/login', Login::class)->name('login');
@@ -63,6 +61,8 @@ Route::get('/addreport', Addreport::class)->name('addreport')->middleware(['with
 Route::get('/report', Report::class)->name('report')->middleware(['withAuth']);
 
 Route::get('/makereport', Makereport::class)->name('makereport')->middleware(['withAuth']);
+
+Route::get('/cetakpdf', Cetakpdf::class)->name('cetakpdf');
 
 
 Route::get('/police', Police::class)->name('police')->middleware(['policeAuth']);
