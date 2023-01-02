@@ -25,13 +25,13 @@
             </div>
         </div>
    @endif
-<div class="flex justify-center border-black">
+<div class="flex justify-center border-black mt-16 pb-16">
 <script src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
 
 
 
 <form wire:submit.prevent="store">
-<div class="flex justify-between border-2 px-2 bg-slate-300 mt-2">
+<div class="flex justify-between border-2 px-2 bg-slate-300 mt-2 py-7">
 
  
 <div class="border-black-2px w-[700px] h-full px-6">

@@ -45,8 +45,31 @@
                                     <td class="text-center px-6 py-4 whitespace-no-wrap border-b border-gray-500 text-blue-900 text-sm leading-5">{{ $report->lost_location }}</td>
                                     <td class="text-center px-6 py-4 whitespace-no-wrap border-b border-gray-500 text-blue-900 text-sm leading-5">{{ $report['isValidated'] ?  'Sudah Divalidasi' : 'Belum Divalidasi' ; }}</td>
                                     <td class="whitespace-no-wrap text-right border-b border-gray-500 text-sm leading-5">
-                                        <button class="px-5 py-2 border-blue-500 border text-blue-500 rounded transition duration-300 hover:bg-blue-700 hover:text-white focus:outline-none">Detail</button>
-                                        <a href={{ route('cetakpdf') }} target="blank"><button class="px-5 py-2 border-blue-500 border text-blue-500 rounded transition duration-300 hover:bg-blue-700 hover:text-white focus:outline-none">Export PDF</button></a>
+                                    <div>
+                                        <div x-data="{ open : false }">
+                                            <button @click="open = true" class="px-5 py-2 border-blue-500 border text-blue-500 rounded transition duration-300 hover:bg-blue-700 hover:text-white focus:outline-none">Detail</button>
+                                            <div x-transition x-show="open" class="fixed top-0 left-0 w-full h-screen bg-black/50 flex justify-center items-center">
+                                                <div class="p-6 w-1/2 bg-white rounded-lg border border-gray-200 shadow-md">
+                                                      <div class="flex justify-center">
+                            <div class="flex flex-col items-center bg-white border rounded-lg shadow-md md:flex-row md:max-w-3xl hover:bg-gray-100 my-4">
+                                <img class="object-cover w-full rounded-t-lg h-96 md:h-auto md:w-48 md:rounded-none md:rounded-l-lg" src={{Storage::url($report->picture)}} alt="">
+                                <div class="flex flex-col justify-between p-4 leading-normal">
+                                    <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Identitas Barang</h5>
+                                    <p class="mb-3 font-bold text-gray-700 dark:text-gray-400">{{ $report->item }}</p>
+                                    <p class="mb-3 font-bold text-gray-700 dark:text-gray-400">{{ $report->identity }}</p>
+                                    <p class="mb-3 font-bold text-gray-700 dark:text-gray-400">Laporan pada : {{ $report->report_date }}</p>
+                                    <p class="mb-3 font-bold text-gray-700 dark:text-gray-400">Hilang pada : {{ $report->loss_date }}</p>
+                                    <p class="mb-3 font-bold text-gray-700 dark:text-gray-400">Hilang di : {{ $report->lost_location }}</p>
+                                    <p class="mb-3 font-bold text-gray-700 dark:text-gray-400">Kronologi : {{ $report->story }}</p>
+                                    <button @click="open = false" class="text-white bg-gradient-to-br from-red-600 to-red-500 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2">Kembali Ke Daftar</button>
+
+                                </div>
+                            </div>
+                            </div>
+                                            </div>
+                                        </div> 
+                                        <a href={{ route('cetakpdf',$report->id) }} target="blank"><button class="px-5 py-2 border-blue-500 border text-blue-500 rounded transition duration-300 hover:bg-blue-700 hover:text-white focus:outline-none">Export PDF</button></a>
+                                    </div>     
                                     </td>
                                         
                                 </tr>

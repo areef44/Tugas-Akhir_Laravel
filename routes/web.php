@@ -62,7 +62,7 @@ Route::get('/report', Report::class)->name('report')->middleware(['withAuth']);
 
 Route::get('/makereport', Makereport::class)->name('makereport')->middleware(['withAuth']);
 
-Route::get('/cetakpdf', Cetakpdf::class)->name('cetakpdf');
+Route::get('/cetakpdf/{id}', Cetakpdf::class)->name('cetakpdf');
 
 
 Route::get('/police', Police::class)->name('police')->middleware(['policeAuth']);

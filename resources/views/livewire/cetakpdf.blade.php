@@ -39,7 +39,7 @@
             <tr>
                 <td style="width: 30%;">Nama</td>
                 <td style="width: 5%;">:</td>
-                <td style="width: 65%;">{{ $reports->members->name}}</td>
+                <td style="width: 65%;">{{ $reports->members->name }}</td>
             </tr>
             <tr>
                 <td style="width: 30%;">Tanggal Lahir</td>
@@ -95,8 +95,6 @@
         <br><br><br>
         <br><br>
         <div style="width: 50%; text-center text-align: right; float: right;">  {{ $reports->polices->police_name }}</div>
-
-    
 
     </div>
 </body>

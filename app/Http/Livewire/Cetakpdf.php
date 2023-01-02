@@ -2,18 +2,36 @@
 
 namespace App\Http\Livewire;
 
+use App\Models\Member;
 use App\Models\Report;
 use Livewire\Component;
 use Dompdf\Dompdf;
 
 class Cetakpdf extends Component
 {
+    public $reports;
+
+
+    public function mount($id)
+    {
+        $this->reports = Report::query()->where('id', $id)
+            ->where('isValidated', 1)
+            ->first();
+    }
+
+
+
     public function render()
     {
-        $reports = Report::query()
-            ->first();
 
-        $html = view('livewire.cetakpdf', ['reports' => $reports]);
+        $reports = $this->reports;
+
+        $members = Member::query()->get();
+
+        $html = view('livewire.cetakpdf', [
+            'reports' => $reports,
+            'members' => $members
+        ]);
 
         // instantiate and use the dompdf class
         $dompdf = new Dompdf();
