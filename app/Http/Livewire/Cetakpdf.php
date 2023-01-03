@@ -4,6 +4,7 @@ namespace App\Http\Livewire;
 
 use App\Models\Member;
 use App\Models\Report;
+use App\Models\Sector;
 use Livewire\Component;
 use Dompdf\Dompdf;
 
@@ -27,6 +28,8 @@ class Cetakpdf extends Component
         $reports = $this->reports;
 
         $members = Member::query()->get();
+
+        $sectors = Sector::query()->get();
 
         $html = view('livewire.cetakpdf', [
             'reports' => $reports,
