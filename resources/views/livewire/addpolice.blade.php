@@ -2,7 +2,7 @@
 <div class="flex">
  
   <div class="w-[350px] px-3">
-<form wire:submit.prevent="store" method="post" enctype="multipart/form-data">
+<form wire:submit.prevent="store" enctype="multipart/form-data">
       
   <div class="flex flex-wrap -mx-3 mb-3">
     <div class="w-full px-3">

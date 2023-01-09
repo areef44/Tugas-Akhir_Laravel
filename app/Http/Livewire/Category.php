@@ -7,11 +7,13 @@ use Livewire\Component;
 
 class Category extends Component
 {
+    public $statusUpdate = false;
 
     public $delete_id;
 
     protected $listeners = [
         'categoriesStored' => 'handleStored',
+        'categoriesUpdated' => 'handleUpdated',
         'deleteConfirmed' => 'destroy'
     ];
 
@@ -32,6 +34,21 @@ class Category extends Component
     public function handleStored($categories)
     {
         // dd($categories);
+    }
+
+     public function handleUpdated($categories)
+    {
+        
+    }
+
+    public function getCategories($id)
+    {
+        $this->statusUpdate = true;
+
+        $categories = ModelsCategory::find($id);
+
+        $this->emit('getCategories', $categories);
+
     }
 
     public function destroy()

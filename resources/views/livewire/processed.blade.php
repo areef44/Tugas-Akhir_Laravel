@@ -95,7 +95,11 @@
                 </td>
                 </td>
                    <td class="py-4 px-6">
-                    <img wire:model="picture" src={{Storage::url($report->picture)}} class="rounded w-20 h-20">
+                    @if (!$report->picture == null)
+                    <img src={{Storage::url($report->picture)}} width="100px" height="100px">
+                    @else
+                    <p>Tidak Ada Gambar</p>
+                    @endif
                 </td>
                   </td>
                    <td class="py-4 px-6">

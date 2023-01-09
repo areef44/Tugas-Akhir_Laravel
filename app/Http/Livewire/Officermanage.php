@@ -12,7 +12,10 @@ class Officermanage extends Component
 
     public $delete_id;
 
+    public $statusUpdate = false;
+
     protected $listeners = [
+        'policesUpdated'=> 'handleUpdated',
         'policesStored' => 'handleStored',
         'deleteConfirmed' => 'destroy'
     ];
@@ -35,7 +38,21 @@ class Officermanage extends Component
         ]);
     }
 
-    public function handleStored($categories)
+    public function getPolice($id)
+    {
+        $this->statusUpdate = true;
+        
+        $polices = Police::find($id);
+
+        $this->emit('getPolice',$polices);
+    }
+
+    public function handleStored($polices)
+    {
+        // dd($categories);
+    }
+
+     public function handleUpdated($polices)
     {
         // dd($categories);
     }

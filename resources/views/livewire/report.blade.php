@@ -91,10 +91,17 @@
                     {{ $report->story }}
                 </td>
                    <td class="py-4 px-4">
-                    <img wire:model="picture" src={{Storage::url($report->picture)}} class="rounded w-20 h-20">
+                    {{-- <img wire:model="picture" src={{Storage::url($report->picture)}} class="rounded w-20 h-20"> --}}
+                    @if (!$report->picture == null)
+                    <img src={{Storage::url($report->picture)}} width="100px" height="100px">
+                    @else
+                    <p>Tidak Ada Gambar</p>
+                    @endif
                 </td>
                 <td class="text-center py-4 px-4">
-                    <a href="#" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
+                    <a href="{{ route('report-update', $report->id) }}" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">
+                    <button type="submit" class="text-white bg-gradient-to-r from-cyan-400 via-cyan-500 to-cyan-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-cyan-300 dark:focus:ring-cyan-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2">Ubah</button>   
+                    </a>
                     <button wire:click.prevent='deleteConfirmation({{ $report->id }})' type="button" class="focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2">Hapus</button>
                 </td>
             </tr>

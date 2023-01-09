@@ -97,7 +97,12 @@
                     {{ $report->story }}
                 </td>
                 <td class="py-4 px-2">
-                    <img wire:model="picture" src={{Storage::url($report->picture)}} class="rounded w-20 h-20">
+                    {{-- <img wire:model="picture" src={{Storage::url($report->picture)}} class="rounded w-20 h-20"> --}}
+                    @if (!$report->picture == null)
+                    <img src={{Storage::url($report->picture)}} width="100px" height="100px">
+                    @else
+                    <p>Tidak Ada Gambar</p>
+                    @endif
                 </td>
                 <td class="py-4 px-2">
                     {{ $report['isValidated'] ?  'Sudah Divalidasi' : 'Belum Divalidasi' ; }}
@@ -110,7 +115,11 @@
                             
                             <div class="flex justify-center">
                             <div class="flex flex-col items-center bg-white border rounded-lg shadow-md md:flex-row md:max-w-3xl hover:bg-gray-100 my-4">
-                                <img class="object-cover w-full rounded-t-lg h-96 md:h-auto md:w-48 md:rounded-none md:rounded-l-lg" src={{Storage::url($report->picture)}} alt="">
+                                <img class="object-cover w-full rounded-t-lg h-96 md:h-auto md:w-48 md:rounded-none md:rounded-l-lg" @if (!$report->picture == null)
+                                <img src={{Storage::url($report->picture)}} width="100px" height="100px">
+                                @else
+                                <h1 class="text-left">Tidak Ada Gambar</h1>
+                                @endif
                                 <div class="flex flex-col justify-between p-4 leading-normal">
                                     <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Identitas Barang</h5>
                                     <p class="mb-3 font-bold text-gray-700 dark:text-gray-400">{{ $report->item }}</p>

@@ -31,7 +31,7 @@
 
         <br>
 
-        <p>Saya yang bertanda tangan di bawah ini:</p>
+        <p>Saudara yang melaporkan kehilangan:</p>
 
         <br>
         
@@ -60,7 +60,7 @@
 
         <br>
 
-        <p>Melaporkan tentang kehilangan {{ $reports->categories->categories}} yaitu {{ $reports->item }} dengan ciri-ciri {{ $reports->identity}}</p>
+        <p>Telah melaporkan tentang kehilangan {{ $reports->categories->categories}} yaitu {{ $reports->item }} dengan ciri-ciri {{ $reports->identity}}</p>
 
         <br>
 

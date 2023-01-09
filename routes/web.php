@@ -24,6 +24,7 @@ use App\Http\Livewire\Police;
 use App\Http\Livewire\Processed;
 use App\Http\Livewire\Register;
 use App\Http\Livewire\Report;
+use App\Http\Livewire\ReportUpdate;
 use App\Http\Livewire\Sector;
 use App\Http\Livewire\Unprocessed;
 use App\Models\Admin as ModelsAdmin;
@@ -39,11 +40,7 @@ use App\Models\Admin as ModelsAdmin;
 |
 */
 
-Route::get('/', function () {
-    return view('index');
-});
-
-Route::get('/home', Home::class)->name('home');
+Route::get('/', Home::class)->name('home');
 
 Route::get('/register', Register::class)->name('register');
 
@@ -57,6 +54,10 @@ Route::get('/login-police', LoginPolice::class)->name('login-police');
 Route::get('/member', Member::class)->name('member')->middleware(['withAuth']);
 
 Route::get('/addreport', Addreport::class)->name('addreport')->middleware(['withAuth']);
+
+Route::get('/report-update/{id}', ReportUpdate::class)->name('report-update');
+
+Route::post('/update/{id}', ReportUpdate::class)->name('update');
 
 Route::get('/report', Report::class)->name('report')->middleware(['withAuth']);
 
@@ -88,11 +89,11 @@ Route::get('/editsector', Editsector::class)->name('editsector')->middleware(['a
 
 Route::get('/addcategory', Addcategory::class)->name('addcategory')->middleware(['adminAuth']);
 
-Route::get('/editcategory', Editcategory::class)->name('editcategory')->middleware(['adminAuth']);
+// Route::get('/editcategory', Editcategory::class)->name('editcategory')->middleware(['adminAuth']);
 
 Route::get('/addpolice', Addpolice::class)->name('addpolice')->middleware(['adminAuth']);
 
-Route::get('/editpolice', Editpolice::class)->name('editpolice')->middleware(['adminAuth']);
+Route::get('/editpolice/{id}', Editpolice::class)->name('editpolice');
 
 
 

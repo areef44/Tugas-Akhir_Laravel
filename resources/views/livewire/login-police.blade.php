@@ -1,5 +1,5 @@
 <div>
-    <div class="w-1/3 mx-auto mt-32 border-2 px-4 py-4 rounded bg-slate-300">
+    <div class="w-1/3 mx-auto mt-32 border-2 px-4 py-4 rounded bg-blue-500 text-white">
 
   @if (session()->has('message-success'))
  
@@ -42,7 +42,7 @@
       <p class="text-red-500 text-xs italic">{{ $message }}</p>
       @enderror
 
-  <button type="submit" class="text-white mt-5 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Submit</button>
+  <button type="submit" class="text-white mt-5 bg-green-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Submit</button>
 </form>
 
 </div>

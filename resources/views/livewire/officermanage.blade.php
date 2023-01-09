@@ -8,7 +8,11 @@
 <h1 class="px-5 text-3xl font-bold text-slate-900 ">Halaman Mengelola Petugas</h1>
 
 <div class="flex justify-center">
+           @if ($statusUpdate)
+        <livewire:editpolice> </livewire:editpolice>
+        @else
         <livewire:addpolice> </livewire:addpolice>
+        @endif
 </div>
 
 <div class="overflow-x-auto relative shadow-md sm:rounded-lg mx-5">
@@ -50,7 +54,7 @@
                     {{ $police->police_name }}
                 </td>
                 <td class="py-4 px-6">
-                    <img wire:model="photo" src={{Storage::url($police->photo)}} class="rounded w-20 h-20">
+                    <img wire:model="photo" src={{asset('storage/'. $police->photo)}} class="rounded w-20 h-20">
                 </td>
                 <td class="py-4 px-6">
                     {{ $police->sector_name}}
@@ -62,7 +66,7 @@
                     {{ $police->password }}
                 </td>
                 <td class="py-4 px-6 text-center">
-                    <a href={{ route('editpolice') }} class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
+                    {{-- <button wire:click="getPolice({{ $police->id_police }})" type="button" class="focus:outline-none text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 ">Edit</button> --}}
                     <button wire:click.prevent='deleteConfirmation({{ $police->id_police }})' type="button" class="focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2">Hapus</button>
                 </td>
             </tr>

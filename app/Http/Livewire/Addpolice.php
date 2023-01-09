@@ -38,8 +38,7 @@ class Addpolice extends Component
                 'id_sector'   => 'required',
                 'email'       => 'required|min:8|unique:polices',
                 'password'    => 'min:8|required_with:verification_password|same:verification_password',
-                'verification_password' => 'required|min:5',
-                'photo' => 'image|max:1024'
+                'verification_password' => 'required|min:5'
             ],
             [
                 'required' => ":attribute Tidak Boleh Kosong",
@@ -47,38 +46,21 @@ class Addpolice extends Component
             ]
         );
 
+       
 
-        $path = $this->photo->store('photos', 'public');
+        
+        $image = $this->photo->store('image', 'public');
 
-        // $url = asset('storage/' . $path);
 
-        // $hashedPassword = Hash::make($this->password);
-
-        $polices = Police::create([
+         $polices = Police::query()->create([
             'police_name' => $this->police_name,
             'id_sector' => $this->id_sector,
             'email' => $this->email,
             'password' => $this->password,
-            'photo' => $path
+            'photo' => $image
         ]);
 
-
-
-        // if ($request->file("photo") != null) {
-        //     //request file photo dari device
-        //     $photo = $request->file("photo");
-
-        //     //hash name foto 
-        //     $filename = $photo->hashName();
-
-        //     //move file to folder photo
-        //     $photo->move("photo", $filename);
-
-        //     //get url from file foto
-        //     $payload['photo'] = $request->getSchemeAndHttpHost() . "/photo/" . $filename;
-        // } else {
-        //     $payload['photo'] = "";
-        // }
+        // dd($polices);
 
 
         $this->resetInput();

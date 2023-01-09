@@ -8,11 +8,14 @@ use Livewire\Component;
 class Sector extends Component
 {
 
+    public $statusUpdate = false;
+
     public $delete_id;
 
     protected $listeners = [
         'sectorsStored' => 'handleStored',
-        'deleteConfirmed' => 'destroy'
+        'deleteConfirmed' => 'destroy',
+        'sectorsUpdated'=>'handleUpdated'
     ];
 
     public function deleteConfirmation($id)
@@ -27,8 +30,20 @@ class Sector extends Component
         return view('livewire.sector', ['sectors' => $data]);
     }
 
+    public function getSector($id)
+    {
+        $this->statusUpdate = true;
+        $sectors = ModelsSector::find($id);
+        $this->emit('getSector', $sectors);
+    }
+
     public function handleStored($sectors)
     {
+    }
+
+     public function handleUpdated($sectors)
+    {
+
     }
 
     public function destroy()
