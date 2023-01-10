@@ -25,7 +25,7 @@
 
 </head>
 
-<body>
+<body onload="window.print();">
     <div id=halaman>
         <h3 id=judul>SURAT PENERIMAAN LAPORAN KEHILANGAN BARANG</h3>
 
@@ -90,10 +90,9 @@
 
         <p>Demikian surat tanda penerimaan laporan kehilangan barang ini dibuat. Agar dapat digunakan dengan sebagaimana mestinya</p>
 
-        <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+        <br><br><br><br><br><br><br><br><br><br>
         <div style="width: 50%; text-align: left; float: right;">{{ $reports->polices->sectors->district}}, {{$reports->report_date}}</div><br>
         <br><br><br>
-        <br><br>
         <div style="width: 50%; text-center text-align: right; float: right;">  {{ $reports->polices->police_name }}</div>
 
     </div>

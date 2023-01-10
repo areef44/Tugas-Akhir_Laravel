@@ -31,7 +31,7 @@ class Cetakpdf extends Component
 
         $sectors = Sector::query()->get();
 
-        $html = view('livewire.cetakpdf', [
+        return view('livewire.cetakpdf', [
             'reports' => $reports,
             'members' => $members
         ]);

@@ -9,7 +9,7 @@ processes = []
   release_command = "php /var/www/html/artisan migrate --force"
 
 
-[build]
+[build] 
   [build.args]
     NODE_VERSION = "14"
     PHP_VERSION = "8.1"
