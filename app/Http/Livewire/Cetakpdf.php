@@ -42,7 +42,7 @@ class Cetakpdf extends Component
         
         // (Optional) Setup the paper size and orientation
         $dompdf->setPaper('A4', 'portrait');
-        dd($dompdf);
+        // dd($dompdf);
         
         // Render the HTML as PDF
         $dompdf->render();
